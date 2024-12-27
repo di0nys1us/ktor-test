@@ -1,10 +1,10 @@
 package ktor.test
 
+import io.ktor.client.call.body
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.request.accept
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
-import io.ktor.client.statement.bodyAsText
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.contentType
@@ -31,6 +31,6 @@ class MainTest {
         }
 
         assertEquals(HttpStatusCode.OK, response.status)
-        assertEquals("""{"message":"Hello, Test!"}""", response.bodyAsText())
+        assertEquals("Hello, Test!", response.body<Map<String, Any?>>()["message"])
     }
 }

@@ -9,12 +9,12 @@ repositories {
 
 dependencies {
     implementation(libs.ktor.serialization.jackson)
-
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
-
-    implementation(libs.logback.classic)
+    implementation(libs.hikaricp)
+    runtimeOnly(libs.postgresql)
+    runtimeOnly(libs.logback.classic)
 }
 
 @Suppress("UnstableApiUsage")
@@ -25,6 +25,7 @@ testing {
             dependencies {
                 implementation(libs.ktor.client.content.negotiation)
                 implementation(libs.ktor.server.test.host)
+                implementation(libs.testcontainers)
             }
         }
     }
