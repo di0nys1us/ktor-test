@@ -1,8 +1,9 @@
 [versions]
 kotlin = "2.1.0"
-ktor = "3.0.3"
+ktor = "3.0.2"
 
 [libraries]
+hikaricp = { module = "com.zaxxer:HikariCP", version = "6.2.1" }
 ktor-client-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-serialization-jackson = { module = "io.ktor:ktor-serialization-jackson", version.ref = "ktor" }
 ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
@@ -10,6 +11,8 @@ ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
 ktor-server-netty = { module = "io.ktor:ktor-server-netty", version.ref = "ktor" }
 ktor-server-test-host = { module = "io.ktor:ktor-server-test-host", version.ref = "ktor" }
 logback-classic = { module = "ch.qos.logback:logback-classic", version = "1.5.15" }
+postgresql = { module = "org.postgresql:postgresql", version = "42.7.4" }
+testcontainers = { module = "org.testcontainers:testcontainers", version = "1.20.4" }
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
