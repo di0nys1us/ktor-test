@@ -1,7 +1,9 @@
 package ktor.test
 
+import com.fasterxml.jackson.core.StreamReadFeature
 import com.fasterxml.jackson.databind.DeserializationFeature
-import com.fasterxml.jackson.module.kotlin.jsonMapper
+import com.fasterxml.jackson.databind.json.JsonMapper
+import com.fasterxml.jackson.module.kotlin.jacksonMapperBuilder
 import io.ktor.http.ContentType
 import io.ktor.serialization.jackson.JacksonConverter
 import io.ktor.server.application.Application
@@ -37,6 +39,7 @@ fun Application.main() {
     }
 }
 
-val jsonMapper = jsonMapper {
-    disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
-}
+val jsonMapper: JsonMapper = jacksonMapperBuilder()
+    .enable(StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION)
+    .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+    .build()
