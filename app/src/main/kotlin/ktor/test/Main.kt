@@ -19,15 +19,19 @@ import io.ktor.server.response.respond
 import io.ktor.server.routing.post
 import io.ktor.server.routing.route
 import io.ktor.server.routing.routing
+import java.io.Closeable
+import javax.sql.DataSource
 
 fun main() {
     embeddedServer(Netty, port = 8080, module = Application::main).start(wait = true)
 }
 
-fun Application.main() {
-    val dataSource = HikariDataSource(HikariConfig("/hikari.properties"))
+fun Application.main(
+    dataSource: DataSource = HikariDataSource(HikariConfig("/hikari.properties")),
+    testing: Boolean = false,
+) {
     monitor.subscribe(ApplicationStopping) {
-        dataSource.close()
+        if (dataSource is Closeable && !testing) dataSource.close()
         monitor.unsubscribe(ApplicationStopping) { }
     }
 
