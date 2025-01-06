@@ -1,6 +1,6 @@
 [versions]
 kotlin = "2.1.0"
-ktor = "3.0.3"
+ktor = "3.0.2"
 
 [libraries]
 hikaricp = { module = "com.zaxxer:HikariCP", version = "6.2.1" }
