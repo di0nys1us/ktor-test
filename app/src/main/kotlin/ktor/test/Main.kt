@@ -1,5 +1,6 @@
 package ktor.test
 
+import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.core.StreamReadFeature
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.json.JsonMapper
@@ -59,4 +60,5 @@ fun Application.main(
 val jsonMapper: JsonMapper = jacksonMapperBuilder()
     .enable(StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION)
     .disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+    .disable(JsonParser.Feature.AUTO_CLOSE_SOURCE)
     .build()
